@@ -1,0 +1,12 @@
+{
+   "scrape route":"/metrics",
+   "port":7077,
+   "clients":[
+      {
+         "address":"tt-service",
+         "endpoint":"/gt2/traumatracker/api/users",
+         "target port":8080,
+         "probe intervall millis":5000
+      }
+   ]
+}

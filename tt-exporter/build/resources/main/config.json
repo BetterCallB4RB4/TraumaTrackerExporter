@@ -1,0 +1,12 @@
+{
+   "scrape route":"/metrics",
+   "port":1234,
+   "clients":[
+      {
+         "address":"pokeapi.co",
+         "endpoint":"/api/v2/pokemon/ditto",
+         "target port":8080,
+         "probe intervall millis":5000
+      }
+   ]
+}

@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  tt-exporter:
+    container_name: tt-exporter
+    build: ./tt-exporter
+    expose:
+      - "7077"
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus:/etc/prometheus
+    ports:           #debug
+      - "9090:9090"  #debug
+    depends_on:
+      - tt-exporter
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    depends_on:
+      - prometheus
+    volumes:
+      - ./grafana:/etc/grafana/provisioning
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - prometheus
+ 
+  exporter:
+    image: bitnami/mongodb-exporter
+    container_name: db-exporter
+    environment:
+      - MONGODB_URI=mongodb://tt-mongodb:27017
+    expose:
+      - "9216"
+ 
+
+networks:
+  default:
+    external:
+      name: t4c-tt-service_default

@@ -1,0 +1,14 @@
+groups:
+- name: availability 
+  rules:      
+  - alert: Excessive_latency_in_the_service_response
+    expr: exporter_0_network_service_latency/1000000 > 20
+    for: 10s
+    labels:
+      severity: page
+      
+  - alert: The_service_was_more_down_than_up_and_running(percentage)
+    expr: exporter_0_http_failure_request_total/exporter_0_http_total_request_total*100 > 20
+    for: 10s
+    labels:
+      severity: page

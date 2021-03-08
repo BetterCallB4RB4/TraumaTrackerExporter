@@ -1,0 +1,11 @@
+- targets: ['tt-exporter:7077']
+  labels:
+    app:    'monitoring'
+    monitor:   'tt-service'
+    region: 'internal'
+
+- targets: ['db-exporter:9216']
+  labels:
+    app:    'monitoring'
+    monitor:   'database'
+    region: 'internal'
